@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+  <div ng-init="click=false">
+    <button ng-click="click= !click">隐藏/显示</button>
+    <div ng-hide="click">
+        请输入一个名字：<input type="text" ng-model="name" />
+        Hello <span ng-bind="name"></span>
+    </div>
+  </div>
+</body>
+</html>

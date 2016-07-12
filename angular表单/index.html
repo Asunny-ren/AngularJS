@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>表单</title>
+  <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="formCtrl">
+  <!-- novalidate 属性是在 HTML5 中新增的。禁用了使用浏览器的默认验证。 -->
+  <form novalidate>
+      firstName:<br>
+      <input type="text" value="" ng-model="user.firstName"><br>
+      lastName:<br>
+      <input type="text" value="" ng-model="user.lastName"><br>
+      <br>
+      <button ng-click="reset()">RESET</button>
+  </form>
+  <p>form={{user}}</p>
+  <p>master={{master}}</p>
+  <script>
+    var myApp=angular.module('myApp',[]);
+    myApp.controller('formCtrl',function($scope){
+      $scope.master={firstName:'aaa',lastName:"bbb"};
+      $scope.reset=function(){
+        $scope.user=angular.copy($scope.master);
+      }
+      $scope.reset();
+    })
+  </script>
+</body>
+</html>

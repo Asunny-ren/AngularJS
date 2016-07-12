@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+<head>
+  <meta charset="UTF-8">
+  <title>select</title>
+  <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+    <select ng-model="selectedName" ng-options="x for x in names"></select>
+    <script>
+       var test=angular.module('test',[]);
+       test.controller('mainCtrl',['$scope',function($scope){
+         $scope.names=[1,2,3,4,5];
+       }])
+    </script>
+</body>
+</html>
