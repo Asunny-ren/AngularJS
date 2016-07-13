@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>层级的作用域</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl" ng-init="somebody={
+  name:'somebody',gender:'male',age:12
+}">
+<ez-namecard data="somebody"></ezNamecard>
+
+  <script>
+   var test=angular.module('myApp',[]);
+   test.directive('ezNamecard',function(){
+     return {
+       restrict:'E',
+       replace:true,
+       template:'<div>',
+       link:function(scope,element,attrs){
+         element.append('<div>name:<span></span></div>')
+         .append('<div>gender:<span></span></div>')
+         .append('<div><span></span></div>');
+        //  监听变化并随时更新DOM
+        scope.$watch(attrs.data,function(nv,ov){
+          var filed=element.find('span');
+          filed[0].textContent=nv.name;
+          filed[1].textContent=nv.gender;
+          filed[2].textContent=nv.age;
+        },true);
+        setInterval(function(){
+          scope.$apply("somebody.age=somebody.age+1")
+        },1000);
+       }
+     }
+   })
+   test.controller('mainCtrl',function($scope){
+     console.log(1);
+   })
+  </script>
+</body>
+</html>

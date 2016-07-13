@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>注入器</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+  <div id="logger"></div>
+  <script>
+  angular.element(document).ready(function(){
+    angular.injector(['ng']).invoke(function($http){
+        var e=document.querySelector('#logger');
+        angular.element(e).text($http.toString());
+    })
+  })
+  var test=angular.module('myApp',[]);
+  test.controller('mainCtrl',function($scope){
+    console.log(1);
+  })
+  </script>
+</body>
+</html>

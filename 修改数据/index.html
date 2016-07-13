@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>修改数据</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+   <ez-namecard-editor data="somebody"></ez-namecard-editor>
+   <div ez-logger data="somebody"></div>
+   <script>
+    var test=angular.module("myApp",[]);
+    test.directive('ezNamecardEditor',function(){
+      return {
+        restrict:'E',
+        replace:true,
+        template:'<ul></ul>',
+        link:function(scope,element,attrs){
+          var data=attrs.data;
+          element.append('<li>name:<input type="text" field="name"></li>')
+          .append('<li>gender:<input type="text" field="gender"></li>')
+          .append('<li>age:<input type="text" field="age"></li>')
+        }
+      }
+    })
+    .directive('ezLogger',function(){
+      return {
+        restrict:"A",
+        link:function(scope,element,attrs){
+          var model=attrs.data;
+          scope.$watch(model,function(nv){
+            var ctn=JSON.stringify(nv,null,"  ");
+            element.html('<pre>'+ctn+'</pre>');
+            // ctn undefined 不知道为啥
+          },true)
+        }
+      }
+    })
+    test.controller('mainCtrl',function($scope){
+      console.log(1);
+    })
+   </script>
+</body>
+</html>

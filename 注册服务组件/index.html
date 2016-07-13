@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>注册服务组件</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+  <div id="ezHello"></div>
+  <script>
+     var test=angular.module('myApp',[]);
+     test.provider('ezHello',function(){
+       this.$get=(function(){
+         return "hello world";
+       })
+     })
+     test.controller('mainCtrl',function($scope){
+       console.log($scope);
+     })
+     angular.element(document).ready(function(){
+        angular.injector(['ng','myApp']).invoke(function(ezHello){
+          var e=document.querySelector('#ezHello');
+          angular.element(e).text(ezHello);
+        })
+     })
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>作用域</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl" ng-init="somebody={name:'somebody',gender:'male',age:'22'}">
+  <ez-namecard data="somebody"></ez-namecard>
+  <script>
+    var test=angular.module('myApp',[]);
+    test.directive('ezNamecard',function(){
+      return {
+        restrict:'E',
+        replace:true,
+        template:'<div>',
+        link:function(scope,element,attrs){
+          var somebody=scope.$eval(attrs.data);
+          element.append("<div>name:"+somebody.name+"</div>")
+          .append("<div>gender:"+somebody.gender+"</div>")
+          .append("<div>age:"+somebody.age+"</div>");
+        }
+      }
+    })
+    test.controller('mainCtrl',function($scope){
+      console.dir($scope);
+    })
+  </script>
+</body>
+</html>

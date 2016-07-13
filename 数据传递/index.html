@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>数据传递</title>
+  <script src="http://lib.sinaapp.com/js/angular.js/angular-1.2.19/angular.min.js"></script>
+</head>
+<body>
+  <ez-namecard data="window.somebody"></ez-namecard>
+  <!-- 注意不是windows -->
+  <script>
+  var somebody={
+    name:'aaa',
+    gender:'male',
+    age:22
+  };
+     var test=angular.module('myApp',[])
+     .directive("ezNamecard",function(){
+        return {
+          restrict:'E',
+          replace:true,
+          template:'<div class="namecard">',
+          link:function(scope,element,attrs){
+            var somebody=eval(attrs.data);
+            element.append('<div>name:'+somebody.name+'</div>')
+            .append('<div>gender:'+somebody.gender+'</div>')
+            .append('<div>age:'+somebody.age+'</div>')
+          }
+        }
+     });
+  </script>
+</body>
+</html>
