@@ -30,9 +30,11 @@ var app = angular.module('app',[]);
 //provider
 app.config(function ($provider) {
     $provider.provider('show_1', function () {
-        return {
-            val: function (name) {
-                return name;
+        this.$get = function () {
+            return {
+                val: function (name) {
+                    return name;
+                }
             }
         }
     });
