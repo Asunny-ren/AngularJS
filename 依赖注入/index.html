@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>依赖注入has和get方法</title>
+    <script src="https://cdn.bootcss.com/angular.js/1.3.6/angular.js"></script>
+</head>
+<body>
+<div ng-controller="mainCtrl">
+    <!-- 视图组件 -->
+</div>
+<script type="text/javascript">
+    var app = angular.module('app',[]);
+    app.factory('$custom',function () {
+        return {
+            print: function (msg) {
+                console.log(msg);
+            }
+        }
+    });
+    var injector = angular.injector(['app','ng']);//此处调用angular的injector方法将app和ng注入进去
+    console.log(injector);//injector注入器
+    var has = injector.has('$custom');
+    console.log(has);
+    if(has) {
+        var custom = injector.get('$custom');
+        custom.print('控制台输出任意内容');
+    }
+    app.controller('mainCtrl',function ($scope, $custom) {
+        $custom.print('我是谁');
+    });
+</script>
+</body>
+</html>

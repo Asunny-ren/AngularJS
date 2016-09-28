@@ -104,3 +104,78 @@ app.controller ('mainCtrl', function ($scope, show_1, show_2, show_3, show_4) {
 
 
 #### 行内式注入
+
+# $injector 常用API
+
+ ## has
+
+ 根据传入的名称，从注册的列表中查找相对应的服务，如果找到返回true，否则，返回false；
+
+ injector.has(name)
+
+ injector为获取的$injector对象，name为需要查找的服务名称；返回boolean值
+
+ ## get
+
+ 将返回指定名称的服务实例，获取到服务的实例对象后，就可以直接调用服务中的属性和方法。
+
+ injector.get(name)
+
+  injector为获取的$injector对象，name为需要查找的服务名称；返回实例对象
+
+## invoke调用
+
+> invoke常用的场景就是执行一个自定义的函数，在执行函数的时候还可以传递变量给函数自身
+
+``` javascript
+    injector.invoke(fn,[self],[locals])
+```
+上述代码中，injector为获取的$injector对象，参数fn为需要执行的函数名称，可选项参数self是一个对象，表示用于函数的this变量，
+可选参数locals也是一个对象，它能为函数中变量名的传递提供方法支持
+
+>实例invoke.html分析：
+
+> 使用factory方法定义一个名为'$custom'的服务，自定义了一个函数名为fun的函数，
+并在函数中注入"$custom"服务，在调用服务中的print方法，在控制台中输出结果
+为了能执行这个函数，调用$injector的invoke方法，该方法的功能不仅执行名称对应的函数代码，
+而且还能返回被执行函数的返回值，示例中仅是执行fun函数，将设置的内容显示在浏览器控制台中.
+
+### 依赖注入的应用场景
+
+1. 构建控制器
+
+app.controller('ctrl',function($scope, $state, $custom, $cookies){
+    //控制器代码
+})
+
+2. 调用工厂方法
+
+``` javascript
+//配置
+    app.config(['dep1', 'dep2',function(dep1, dep2) {
+        //函数体
+    }])
+//服务
+    .factory('serviceName',['dep1', 'dep2',function(dep1, dep2) {
+        //函数体
+    }])
+//指令
+    .directive('directName',['dep1', 'dep2',function(dep1, dep2) {
+        //函数体
+    }])
+//过滤器
+    .filter('filterName',['dep1', 'dep2',function(dep1, dep2) {
+        //函数体
+    }]);
+```
+
+
+
+
+
+
+
+
+
+
+
