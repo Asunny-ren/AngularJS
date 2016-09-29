@@ -46,5 +46,7 @@ scope属性自定义指令的时候，默认值就是布尔类型，初始值为false
 
 ## @绑定
 
-功能与将scope属性置为true有许多功能相同的地方。表现为：[]
+功能与将scope属性置为true有许多功能相同的地方。表现为：![@绑定](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/IMG_0483.JPG)
+
+![=绑定](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/IMG_0484.JPG)
 
