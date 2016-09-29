@@ -54,4 +54,22 @@ scope属性自定义指令的时候，默认值就是布尔类型，初始值为false
 ![实例2](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/example2.png)
 ![实例3](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/example3.png)
 
+### require和controller属性的概念
+
+> require属性在创建子元素指令时添加，它的属性值用于描述与父元素指令通信时的方式
+> "^"表示向外层寻找指令名称的指令
+> "?"表示即使没有找到，也不会出现异常
+
+require:"^?myDirective"
+
+表示向外层寻找名称为"myDirective"的指令，如果没有找到也不会出现异常，而这种向外层的方式，也包括本身
+
+controller属性值是一个构造型函数，在创建父元素指令时添加，可以在该函数中添加多个方法和属性。
+这些方法和属性都会被实例化的对象所继承，而这个实例化对象则是子元素指令中"link"函数的第4个参数
+
+controller:function() {
+    this.a = function(childDirective) {
+        //方法体a的函数体
+    }
+}
 
