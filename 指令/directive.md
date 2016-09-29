@@ -50,6 +50,8 @@ scope属性自定义指令的时候，默认值就是布尔类型，初始值为false
 
 ![=绑定](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/597BB3CC3D8BC22614336105A79EBAAA.png)
 
-![实例]()
+![实例1](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/example1.png)
+![实例2](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/example2.png)
+![实例3](https://github.com/Asunny-ren/AngularJS/blob/master/%E6%8C%87%E4%BB%A4/example3.png)
 
 
