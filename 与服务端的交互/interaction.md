@@ -227,9 +227,12 @@ angular.module('app',[]);
 promise.then(successCallback,errorCallback,notifyCallback)
 
 > successCallback表示执行resolve方法时的回调函数
-  errorCallback表示执行reject方法时的回调函数
-  notifyCallback表示执行notify方法时的回调函数
+
+> errorCallback表示执行reject方法时的回调函数
+
+> notifyCallback表示执行notify方法时的回调函数
+
   函数中的参数值可以在执行的时候进行传递，返回对象支持链式写法
-  
+
 
 

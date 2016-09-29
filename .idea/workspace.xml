@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="93afaf18-0399-4304-abb1-43060cb02dd2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/与服务端的交互/interaction.md" afterPath="$PROJECT_DIR$/与服务端的交互/interaction.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AngularJS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +27,8 @@
         <entry file="file://$PROJECT_DIR$/与服务端的交互/interaction.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state>
-              <first_editor vertical-scroll-proportion="0.5990099">
-                <caret line="232" column="2" selection-start-line="232" selection-start-column="2" selection-end-line="232" selection-end-column="2" />
+              <first_editor vertical-scroll-proportion="0.7772277">
+                <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -350,8 +349,8 @@
     <entry file="file://$PROJECT_DIR$/与服务端的交互/interaction.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state>
-          <first_editor vertical-scroll-proportion="0.5990099">
-            <caret line="232" column="2" selection-start-line="232" selection-start-column="2" selection-end-line="232" selection-end-column="2" />
+          <first_editor vertical-scroll-proportion="0.7772277">
+            <caret line="231" column="0" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
