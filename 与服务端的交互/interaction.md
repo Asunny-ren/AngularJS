@@ -117,3 +117,119 @@ removeAll用于移除全部缓存内容，并重置缓存结构
 
 destory则是从$cacheFactory缓存注册表中删除所有的缓存引用条目，并重置缓存对象
 
+## $resource服务
+
+核心价值在于能为支持RESTful的服务器进行无缝隙的数据交互
+
+### $resource服务的使用和对象中的方法
+
+> $resource服务本身是一个可选性的模块，没有包含在angular中，如果需要使用该模块，需要在页面中通过script标签进行文件的导入
+
+然后可以注入到应用模型中
+
+angular.module('app',['ngResource']);
+
+注入之后就可以在控制器或者其他服务中直接调用$resource服务
+
+``` javascript
+    var obj = $resource(url[,paramDefaults][,actions])
+```
+在上述代码中，obj表示请求服务器指定url地址后的$resource对象，该对象中包含的与服务器端进行数据交互的全部API
+
+参数url表示请求服务器的地址，允许使用占位符变量，但该变量必须以":"为前缀
+``` javascript
+var obj = $resource('url?action=:act');
+obj.$save{ act: 'save' }
+//在执行save动作时，向服务器端发送的实际地址就为"url?action=save"
+```
+可选项参数paramsDefaults是一个对象，用于设置请求时的默认参数值，
+
+在发送请求时，该对象中的全部值将自动序列化，如遇占位符变量自动替换，
+
+并将结果添加到url请求之后
+
+``` javascript
+var obj = $resource('url?action=:act',{
+    act: 'save',
+    a: '1',
+    b: '2'
+})
+//在执行代码后向服务器端发送的实际地址为"url?action=save&a=1&b=2"
+```
+可选项参数actions也是一个对象，但它的功能是扩展默认资源动作
+``` javascript
+var obj = $resource('url?action=:act'{
+    //定义请求默认值
+},{
+    a:{
+        method: 'get'
+    }
+});
+//执行代码后，就可以在$resource对象中直接调用可选项参数actions中自定义的方法a，
+//即obj.$a(),
+```
+### $resource对象中的GET类型请求
+
+有2个，分别为get和query
+
+``` javascript
+var obj = $reource('url');
+//get()方法，返回值可以是单个资源
+obj.get(params,successFn,errorFn);
+//query()方法，返回一个数组或集合类的资源
+obj.query(params,successFn,errorFn);
+
+```
+
+### $resource对象中的非GET类型请求
+
+有3个，分别为save,delete,remove
+
+``` javascript
+var obj = $resource('url');
+//save()
+obj.save(params,postData,successFn,errorFn);
+//delete()
+obj.delete(params,postData,successFn,errorFn);
+//remove()
+obj.remove(params,posrData,successFn,errorFn);
+```
+与get相比，增加了一个postData参数
+
+该参数是一个对象，它的功能是添加以非GET方式向服务端发送的数据体
+
+> save方法在服务端保存数据时使用，执行时，将以POST方式向服务端发送一个请求，
+postData参数中添加的数据体也将一起被发送
+
+> delete和remove方法都是在删除服务端数据时使用
+执行时，将携带postData参数中添加的数据体，以delete方式向服务端发送一个请求
+两者之间的区别在于，remove方法可以解决IE浏览器中delete是javascript保留字而导致的错误
+
+===============================================
+## promise对象
+
+#### 基本概念和使用方法
+
+想要在angular中创建一个promise对象，必须在模板中先注入$q服务，并先调用defer方法创建一个延期对象
+
+``` javascript
+angular.module('app',[]);
+    .controller('ctrl',function($scope, $q) {
+        var defer = $q.defer();
+    })
+```
+> defer是一个延期对象，包括3个方法，为notify，resolve，reject和一个属性promise
+在这3个方法中都可以同过value参数进行传值，
+当调用延期对象的"promise"的属性时，就创建了一个promise对象
+
+创建了promise对象之后就可以通过调用then方法来执行延期对象不同操作后的回调函数，then方法中包含与操作相对应的3个回调函数
+
+promise.then(successCallback,errorCallback,notifyCallback)
+
+> successCallback表示执行resolve方法时的回调函数
+  errorCallback表示执行reject方法时的回调函数
+  notifyCallback表示执行notify方法时的回调函数
+  函数中的参数值可以在执行的时候进行传递，返回对象支持链式写法
+  
+
+
